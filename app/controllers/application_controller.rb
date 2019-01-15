@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   attr_reader :current_user
 
   private
+  # check each request
   def authenticate_request
     @current_user = AuthorizeApiRequest.call(request.headers).result
     render json: { error: 'Not Authorized' }, status: 401 unless @current_user
